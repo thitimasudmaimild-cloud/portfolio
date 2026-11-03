@@ -122,10 +122,41 @@ nav ul a:hover::after{transform:scaleX(1)}
 @media(max-width:900px){.vids{grid-template-columns:1fr}}
 
 /* series */
-.row4{display:grid;grid-template-columns:repeat(4,1fr);gap:20px}
-.row4 .ph{aspect-ratio:4/5;background:var(--paper);border-radius:4px;display:grid;place-items:center;color:var(--muted);font-size:12px;letter-spacing:.14em;text-transform:uppercase;overflow:hidden}
-.row4 img{width:100%;height:100%;object-fit:cover}
-@media(max-width:720px){.row4{grid-template-columns:1fr 1fr}}
+.row5{display:grid;grid-template-columns:repeat(5,1fr);gap:18px}
+.cov{display:block;background:none;border:0;padding:0;cursor:pointer;text-align:left;font:inherit;color:inherit}
+.cov .ph{aspect-ratio:4/5;background:var(--paper);border-radius:4px;overflow:hidden;position:relative}
+.cov img{width:100%;height:100%;object-fit:cover;transition:transform 1.1s var(--ease)}
+.cov:hover img{transform:scale(1.05)}
+.cov .ph::after{content:"View carousel →";position:absolute;left:0;right:0;bottom:0;padding:14px 16px;background:linear-gradient(transparent,rgba(0,0,0,.55));color:#fff;font-size:11px;letter-spacing:.16em;text-transform:uppercase;opacity:0;transform:translateY(8px);transition:opacity .5s var(--ease),transform .5s var(--ease)}
+.cov:hover .ph::after,.cov:focus-visible .ph::after{opacity:1;transform:none}
+.cov .cap{margin:12px 0 0;font-size:13px;color:var(--body);line-height:1.4}
+.cov .cap b{display:block;font-family:var(--serif);font-size:19px;font-weight:500;color:var(--fg);letter-spacing:0}
+.cov .cap span{color:var(--muted);font-size:12px;letter-spacing:.08em;text-transform:uppercase}
+@media(max-width:960px){.row5{grid-template-columns:repeat(3,1fr)}}
+@media(max-width:600px){.row5{grid-template-columns:1fr 1fr;gap:14px}}
+
+/* lightbox */
+.lb{position:fixed;inset:0;z-index:100;background:rgba(255,255,255,.96);backdrop-filter:blur(18px);-webkit-backdrop-filter:blur(18px);display:flex;flex-direction:column;opacity:0;visibility:hidden;transition:opacity .5s var(--ease),visibility 0s .5s}
+.lb.open{opacity:1;visibility:visible;transition:opacity .5s var(--ease)}
+.lb-top{display:flex;align-items:center;justify-content:space-between;padding:18px max(24px,env(safe-area-inset-right)) 0 max(24px,env(safe-area-inset-left))}
+.lb-top .eyebrow{margin:0}
+.lb-x{background:none;border:1px solid var(--line);border-radius:999px;width:44px;height:44px;cursor:pointer;font-size:20px;line-height:1;color:var(--fg);transition:background .3s}
+.lb-x:hover{background:var(--paper)}
+.lb-stage{flex:1;display:flex;align-items:center;justify-content:center;gap:24px;padding:16px 24px;min-height:0}
+.lb-frame{height:min(78vh,900px);aspect-ratio:4/5;max-width:calc(100vw - 48px);border-radius:6px;overflow:hidden;background:var(--paper);box-shadow:0 30px 80px rgba(0,0,0,.14);position:relative}
+.lb-frame img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:0;transform:translateX(24px);transition:opacity .55s var(--ease),transform .55s var(--ease)}
+.lb-frame img.cur{opacity:1;transform:none}
+.lb-frame img.prev{transform:translateX(-24px)}
+.lb-btn{background:#fff;border:1px solid var(--line);border-radius:999px;width:52px;height:52px;cursor:pointer;font-size:22px;color:var(--fg);display:grid;place-items:center;transition:background .3s,transform .3s var(--ease);flex:none}
+.lb-btn:hover{background:var(--paper);transform:scale(1.06)}
+.lb-bot{display:flex;flex-direction:column;align-items:center;gap:14px;padding:8px 24px 28px}
+.lb-cap{margin:0;font-family:var(--serif);font-size:22px;font-weight:500;text-align:center}
+.lb-dots{display:flex;gap:8px}
+.lb-dots i{width:7px;height:7px;border-radius:50%;background:var(--line);transition:background .3s,transform .3s}
+.lb-dots i.on{background:var(--gold);transform:scale(1.3)}
+.lb-sub{margin:0;font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:var(--muted)}
+@media(max-width:720px){.lb-btn{display:none}.lb-frame{height:auto;width:min(100%,calc((100vh - 220px) * .8))}.lb-cap{font-size:18px}}
+body.lb-lock{overflow:hidden}
 
 /* about */
 .about{display:grid;grid-template-columns:repeat(3,1fr);gap:40px;padding-block:56px;border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
@@ -306,12 +337,14 @@ footer .fine{margin-top:56px;font-size:13px;color:var(--muted);display:flex;just
       </div>
       <p class="tag rv d2">Instagram · Facebook<br>Ongoing series</p>
     </div>
-    <div class="row4">
-      <div class="ph rv">Carousel cover</div>
-      <div class="ph rv d1">Carousel cover</div>
-      <div class="ph rv d2">Carousel cover</div>
-      <div class="ph rv d3">Carousel cover</div>
+    <div class="row5">
+      <button class="cov rv" type="button" data-set="m1" data-title="Movie Night, Sober Edition" data-sub="Movie guide · Part 1 · Jan 2026"><div class="ph"><img src="img/m1_0.jpg" alt="Movie guide part 1 cover" loading="lazy"></div><p class="cap"><b>Movie Night, Sober Edition</b><span>Movies · Part 1</span></p></button>
+      <button class="cov rv d1" type="button" data-set="m2" data-title="A Watchlist Made for Healing" data-sub="Movie guide · Part 2 · Feb 2026"><div class="ph"><img src="img/m2_0.jpg" alt="Movie guide part 2 cover" loading="lazy"></div><p class="cap"><b>A Watchlist Made for Healing</b><span>Movies · Part 2</span></p></button>
+      <button class="cov rv d2" type="button" data-set="m3" data-title="Recovery-Friendly Movies" data-sub="Movie guide · Part 3 · Apr 2026"><div class="ph"><img src="img/m3_0.jpg" alt="Movie guide part 3 cover" loading="lazy"></div><p class="cap"><b>Recovery-Friendly Movies</b><span>Movies · Part 3</span></p></button>
+      <button class="cov rv d3" type="button" data-set="b1" data-title="Gentle &amp; Stabilizing Recovery" data-sub="Book guide · Part 1 · Jun 2026"><div class="ph"><img src="img/b1_0.jpg" alt="Book guide part 1 cover" loading="lazy"></div><p class="cap"><b>Gentle &amp; Stabilizing Recovery</b><span>Books · Part 1</span></p></button>
+      <button class="cov rv d4" type="button" data-set="b2" data-title="Deep &amp; Reflective Read" data-sub="Book guide · Part 2 · Jun 2026"><div class="ph"><img src="img/b2_0.jpg" alt="Book guide part 2 cover" loading="lazy"></div><p class="cap"><b>Deep &amp; Reflective Read</b><span>Books · Part 2</span></p></button>
     </div>
+    <p class="lead rv" style="margin-top:28px;font-size:14px;color:var(--muted)">Click a cover to flip through the full carousel.</p>
   </div>
 </section>
 
@@ -340,8 +373,39 @@ footer .fine{margin-top:56px;font-size:13px;color:var(--muted);display:flex;just
   </div>
 </footer>
 
+<div class="lb" id="lb" role="dialog" aria-modal="true" aria-label="Carousel viewer">
+  <div class="lb-top"><p class="eyebrow">Case 3 · Carousel series</p><button class="lb-x" type="button" aria-label="Close">×</button></div>
+  <div class="lb-stage">
+    <button class="lb-btn" type="button" data-dir="-1" aria-label="Previous slide">‹</button>
+    <div class="lb-frame" id="lbFrame"></div>
+    <button class="lb-btn" type="button" data-dir="1" aria-label="Next slide">›</button>
+  </div>
+  <div class="lb-bot"><p class="lb-cap" id="lbCap"></p><div class="lb-dots" id="lbDots"></div><p class="lb-sub" id="lbSub"></p></div>
+</div>
+
 <script>
 (function(){
+  /* lightbox */
+  var lb=document.getElementById('lb'),frame=document.getElementById('lbFrame'),cap=document.getElementById('lbCap'),dots=document.getElementById('lbDots'),sub=document.getElementById('lbSub');
+  var imgs=[],i=0,n=6,last=null,base='',title='';
+  function show(k){k=(k+n)%n;var prevEl=imgs[i];i=k;
+    imgs.forEach(function(im,j){im.classList.toggle('cur',j===i);im.classList.toggle('prev',j<i)});
+    dots.querySelectorAll('i').forEach(function(d,j){d.classList.toggle('on',j===i)});
+    sub.textContent=(i===0?'Cover':'Slide '+i+' of '+(n-1))+' · '+base;
+    if(imgs[(i+1)%n]&&!imgs[(i+1)%n].src)imgs[(i+1)%n].src=imgs[(i+1)%n].dataset.src;}
+  function open(btn){var set=btn.dataset.set;base=btn.dataset.sub;cap.innerHTML=btn.dataset.title;frame.innerHTML='';dots.innerHTML='';imgs=[];
+    for(var k=0;k<n;k++){var im=document.createElement('img');im.alt=btn.dataset.title+' slide '+k;im.dataset.src='img/'+set+'_'+k+'.jpg';if(k<2)im.src=im.dataset.src;frame.appendChild(im);imgs.push(im);dots.appendChild(document.createElement('i'));}
+    i=0;show(0);last=btn;lb.classList.add('open');document.body.classList.add('lb-lock');lb.querySelector('.lb-x').focus();}
+  function close(){lb.classList.remove('open');document.body.classList.remove('lb-lock');if(last)last.focus();}
+  document.querySelectorAll('.cov').forEach(function(b){b.addEventListener('click',function(){open(b)})});
+  lb.querySelector('.lb-x').addEventListener('click',close);
+  lb.querySelectorAll('.lb-btn').forEach(function(b){b.addEventListener('click',function(){show(i+ +b.dataset.dir)})});
+  lb.addEventListener('click',function(e){if(e.target===lb||e.target.classList.contains('lb-stage'))close()});
+  frame.addEventListener('click',function(){show(i+1)});
+  document.addEventListener('keydown',function(e){if(!lb.classList.contains('open'))return;if(e.key==='Escape')close();if(e.key==='ArrowRight')show(i+1);if(e.key==='ArrowLeft')show(i-1)});
+  var tx=null;frame.addEventListener('touchstart',function(e){tx=e.touches[0].clientX},{passive:true});
+  frame.addEventListener('touchend',function(e){if(tx===null)return;var dx=e.changedTouches[0].clientX-tx;tx=null;if(Math.abs(dx)>40){show(i+(dx<0?1:-1));e.preventDefault()}});
+
   var io=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target);
     e.target.querySelectorAll('[data-count]').forEach(count);
     if(e.target.hasAttribute('data-count'))count(e.target);}})},{threshold:.18});
