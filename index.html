@@ -55,13 +55,18 @@ nav ul a:hover::after{transform:scaleX(1)}
 .marquee::before,.marquee::after{content:"";position:absolute;top:0;bottom:0;width:120px;z-index:2;pointer-events:none}
 .marquee::before{left:0;background:linear-gradient(90deg,#fff,rgba(255,255,255,0))}
 .marquee::after{right:0;background:linear-gradient(270deg,#fff,rgba(255,255,255,0))}
-.track{display:flex;gap:20px;width:max-content;animation:slide 48s linear infinite}
+.track{display:flex;gap:22px;width:max-content;animation:slide 70s linear infinite;align-items:flex-start}
 .marquee:hover .track{animation-play-state:paused}
-.track figure{margin:0;width:300px;aspect-ratio:1;overflow:hidden;border-radius:4px;background:var(--paper)}
+.track>a{flex:none;display:block;color:inherit}.track figure{margin:0}
+.track .im{height:320px;overflow:hidden;border-radius:4px;background:var(--paper);position:relative}
+.track .sq .im{width:320px}.track .tall .im{width:256px}.track .wide .im{width:480px}
 .track img{width:100%;height:100%;object-fit:cover;transition:transform .8s var(--ease)}
 .track figure:hover img{transform:scale(1.04)}
+.track .wide .im::after{content:"";position:absolute;left:50%;top:50%;width:56px;height:56px;margin:-28px 0 0 -28px;border-radius:50%;background:rgba(255,255,255,.9) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M9 7l8 5-8 5z' fill='%231F1F1F'/%3E%3C/svg%3E") center/26px no-repeat;box-shadow:0 8px 24px rgba(0,0,0,.18)}
+.track figcaption{margin-top:12px;font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:var(--muted)}
+.track figcaption b{color:var(--fg);font-weight:600;letter-spacing:.06em;text-transform:none;font-size:13px;display:block;margin-bottom:2px}
 @keyframes slide{to{transform:translateX(-50%)}}
-@media(max-width:720px){.track figure{width:220px}}
+@media(max-width:720px){.track .im{height:220px}.track .sq .im{width:220px}.track .tall .im{width:176px}.track .wide .im{width:330px}}
 
 /* section head */
 .head{display:grid;grid-template-columns:1fr auto;gap:24px;align-items:end;margin-bottom:56px}
@@ -209,20 +214,34 @@ footer .fine{margin-top:56px;font-size:13px;color:var(--muted);display:flex;just
   </div>
 </header>
 
-<div class="marquee" aria-label="Selected ad creatives">
+<div class="marquee" aria-label="Selected work">
   <div class="track">
-    <figure><img src="img/ad2.jpg" alt="Ad: Exploring rehab options for someone you love"></figure>
-    <figure><img src="img/ad4.jpg" alt="Ad: Leave the everyday behind. Recover in Thailand."></figure>
-    <figure><img src="img/ad3.jpg" alt="Ad: What a private rehab should include"></figure>
-    <figure><img src="img/ad1.jpg" alt="Ad: There's a life waiting on the other side of recovery"></figure>
-    <figure><img src="img/ad5.jpg" alt="Ad: Tried rehab before? This time can be different."></figure>
-    <figure><img src="img/ad6.jpg" alt="Ad: Sometimes addiction is only half the story"></figure>
-    <figure><img src="img/ad2.jpg" alt=""></figure>
-    <figure><img src="img/ad4.jpg" alt=""></figure>
-    <figure><img src="img/ad3.jpg" alt=""></figure>
-    <figure><img src="img/ad1.jpg" alt=""></figure>
-    <figure><img src="img/ad5.jpg" alt=""></figure>
-    <figure><img src="img/ad6.jpg" alt=""></figure>
+    <a class="sq" href="#work"><figure><div class="im"><img src="img/ad2.jpg" alt="Exploring rehab options for someone you love" loading="lazy"></div><figcaption><b>Exploring rehab options for someone you love</b>Meta Ads · winning angle</figcaption></figure></a>
+    <a class="wide" href="#video"><figure><div class="im"><img src="https://i.ytimg.com/vi/GiaCMN5i6nE/maxresdefault.jpg" onerror="this.onerror=null;this.src='https://i.ytimg.com/vi/GiaCMN5i6nE/hqdefault.jpg'" alt="A Week at Miracles Asia" loading="lazy"></div><figcaption><b>A Week at Miracles Asia</b>Video series</figcaption></figure></a>
+    <a class="tall" href="#series"><figure><div class="im"><img src="img/m1_0.jpg" alt="Movie Night, Sober Edition" loading="lazy"></div><figcaption><b>Movie Night, Sober Edition</b>Carousel series</figcaption></figure></a>
+    <a class="sq" href="#work"><figure><div class="im"><img src="img/ad4.jpg" alt="Leave the everyday behind" loading="lazy"></div><figcaption><b>Leave the everyday behind</b>Meta Ads</figcaption></figure></a>
+    <a class="tall" href="#series"><figure><div class="im"><img src="img/b1_0.jpg" alt="Gentle & Stabilizing Recovery" loading="lazy"></div><figcaption><b>Gentle &amp; Stabilizing Recovery</b>Carousel series</figcaption></figure></a>
+    <a class="sq" href="#work"><figure><div class="im"><img src="img/ad3.jpg" alt="What a private rehab should include" loading="lazy"></div><figcaption><b>What a private rehab should include</b>Meta Ads</figcaption></figure></a>
+    <a class="wide" href="#video"><figure><div class="im"><img src="https://i.ytimg.com/vi/mszs-5OphJw/maxresdefault.jpg" onerror="this.onerror=null;this.src='https://i.ytimg.com/vi/mszs-5OphJw/hqdefault.jpg'" alt="Mental Health & Addiction with Dr. Ali Ajaz" loading="lazy"></div><figcaption><b>Mental Health &amp; Addiction with Dr. Ali Ajaz</b>Video series</figcaption></figure></a>
+    <a class="tall" href="#series"><figure><div class="im"><img src="img/m2_0.jpg" alt="A Watchlist Made for Healing" loading="lazy"></div><figcaption><b>A Watchlist Made for Healing</b>Carousel series</figcaption></figure></a>
+    <a class="sq" href="#work"><figure><div class="im"><img src="img/ad1.jpg" alt="There’s a life waiting on the other side" loading="lazy"></div><figcaption><b>There’s a life waiting on the other side</b>Meta Ads</figcaption></figure></a>
+    <a class="tall" href="#series"><figure><div class="im"><img src="img/b2_0.jpg" alt="Deep & Reflective Read" loading="lazy"></div><figcaption><b>Deep &amp; Reflective Read</b>Carousel series</figcaption></figure></a>
+    <a class="sq" href="#work"><figure><div class="im"><img src="img/ad5.jpg" alt="Tried rehab before?" loading="lazy"></div><figcaption><b>Tried rehab before?</b>Meta Ads</figcaption></figure></a>
+    <a class="tall" href="#series"><figure><div class="im"><img src="img/m3_0.jpg" alt="Recovery-Friendly Movies" loading="lazy"></div><figcaption><b>Recovery-Friendly Movies</b>Carousel series</figcaption></figure></a>
+    <a class="sq" href="#work"><figure><div class="im"><img src="img/ad6.jpg" alt="Sometimes addiction is only half the story" loading="lazy"></div><figcaption><b>Sometimes addiction is only half the story</b>Meta Ads</figcaption></figure></a>
+    <a class="sq" href="#work"><figure><div class="im"><img src="img/ad2.jpg" alt="" loading="lazy"></div><figcaption><b>Exploring rehab options for someone you love</b>Meta Ads · winning angle</figcaption></figure></a>
+    <a class="wide" href="#video"><figure><div class="im"><img src="https://i.ytimg.com/vi/GiaCMN5i6nE/maxresdefault.jpg" onerror="this.onerror=null;this.src='https://i.ytimg.com/vi/GiaCMN5i6nE/hqdefault.jpg'" alt="" loading="lazy"></div><figcaption><b>A Week at Miracles Asia</b>Video series</figcaption></figure></a>
+    <a class="tall" href="#series"><figure><div class="im"><img src="img/m1_0.jpg" alt="" loading="lazy"></div><figcaption><b>Movie Night, Sober Edition</b>Carousel series</figcaption></figure></a>
+    <a class="sq" href="#work"><figure><div class="im"><img src="img/ad4.jpg" alt="" loading="lazy"></div><figcaption><b>Leave the everyday behind</b>Meta Ads</figcaption></figure></a>
+    <a class="tall" href="#series"><figure><div class="im"><img src="img/b1_0.jpg" alt="" loading="lazy"></div><figcaption><b>Gentle &amp; Stabilizing Recovery</b>Carousel series</figcaption></figure></a>
+    <a class="sq" href="#work"><figure><div class="im"><img src="img/ad3.jpg" alt="" loading="lazy"></div><figcaption><b>What a private rehab should include</b>Meta Ads</figcaption></figure></a>
+    <a class="wide" href="#video"><figure><div class="im"><img src="https://i.ytimg.com/vi/mszs-5OphJw/maxresdefault.jpg" onerror="this.onerror=null;this.src='https://i.ytimg.com/vi/mszs-5OphJw/hqdefault.jpg'" alt="" loading="lazy"></div><figcaption><b>Mental Health &amp; Addiction with Dr. Ali Ajaz</b>Video series</figcaption></figure></a>
+    <a class="tall" href="#series"><figure><div class="im"><img src="img/m2_0.jpg" alt="" loading="lazy"></div><figcaption><b>A Watchlist Made for Healing</b>Carousel series</figcaption></figure></a>
+    <a class="sq" href="#work"><figure><div class="im"><img src="img/ad1.jpg" alt="" loading="lazy"></div><figcaption><b>There’s a life waiting on the other side</b>Meta Ads</figcaption></figure></a>
+    <a class="tall" href="#series"><figure><div class="im"><img src="img/b2_0.jpg" alt="" loading="lazy"></div><figcaption><b>Deep &amp; Reflective Read</b>Carousel series</figcaption></figure></a>
+    <a class="sq" href="#work"><figure><div class="im"><img src="img/ad5.jpg" alt="" loading="lazy"></div><figcaption><b>Tried rehab before?</b>Meta Ads</figcaption></figure></a>
+    <a class="tall" href="#series"><figure><div class="im"><img src="img/m3_0.jpg" alt="" loading="lazy"></div><figcaption><b>Recovery-Friendly Movies</b>Carousel series</figcaption></figure></a>
+    <a class="sq" href="#work"><figure><div class="im"><img src="img/ad6.jpg" alt="" loading="lazy"></div><figcaption><b>Sometimes addiction is only half the story</b>Meta Ads</figcaption></figure></a>
   </div>
 </div>
 
