@@ -72,7 +72,7 @@ nav ul a:hover::after{transform:scaleX(1)}
 
 /* counters */
 .stats{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;padding:40px 0;border-top:1px solid var(--line);border-bottom:1px solid var(--line);margin-bottom:64px}
-.stat b{display:block;font-family:var(--serif);font-weight:400;font-size:clamp(56px,7vw,88px);line-height:1;color:var(--gold);font-variant-numeric:tabular-nums}
+.stat b{display:block;font-family:var(--serif);font-weight:500;font-size:clamp(56px,7vw,88px);line-height:1;color:var(--gold);font-variant-numeric:lining-nums tabular-nums;font-feature-settings:"lnum" 1,"tnum" 1}
 .stat span{display:block;margin-top:10px;font-size:13px;color:var(--muted);letter-spacing:.04em}
 @media(max-width:720px){.stats{grid-template-columns:1fr;gap:28px}}
 
@@ -240,7 +240,7 @@ footer .fine{margin-top:56px;font-size:13px;color:var(--muted);display:flex;just
     <div class="stats rv">
       <div class="stat"><b data-count="8.01" data-suffix="%" data-dec="2">0</b><span>click-through rate, winning angle</span></div>
       <div class="stat"><b data-count="1582" data-sep="1">0</b><span>link clicks in 7 days</span></div>
-      <div class="stat"><b data-count="9.15" data-prefix="฿" data-dec="2">0</b><span>cost per click, winning angle</span></div>
+      <div class="stat"><b data-count="9.15" data-dec="2">0</b><span>THB per link click, winning angle</span></div>
     </div>
 
     <div class="bars rv" aria-label="Click-through rate by angle">
